@@ -54,6 +54,7 @@
     <CreateVsixContainer>True</CreateVsixContainer>
     <DeployExtension>True</DeployExtension>
     <CopyVsixExtensionFiles>False</CopyVsixExtensionFiles>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ExtensionHostWindow.cs" />
