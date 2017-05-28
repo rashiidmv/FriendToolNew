@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendMain", "FriendMain\Fr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Friend.Infra", "Friend.Infra\Friend.Infra.csproj", "{DBF30D16-4C3C-467B-9284-41911D4755C1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{4BE1FADF-1E20-4F4C-99FF-1AE22E120EBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendExtension", "FriendExtension\FriendExtension.csproj", "{D06DB76A-068D-4E28-8D56-B5DBCD6F4828}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,10 @@ Global
 		{DBF30D16-4C3C-467B-9284-41911D4755C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBF30D16-4C3C-467B-9284-41911D4755C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBF30D16-4C3C-467B-9284-41911D4755C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06DB76A-068D-4E28-8D56-B5DBCD6F4828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06DB76A-068D-4E28-8D56-B5DBCD6F4828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06DB76A-068D-4E28-8D56-B5DBCD6F4828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06DB76A-068D-4E28-8D56-B5DBCD6F4828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
