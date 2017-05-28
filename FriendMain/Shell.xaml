@@ -1,12 +1,12 @@
-﻿<Window x:Class="FriendMain.MainWindow"
+﻿<Window x:Class="FriendMain.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FriendMain"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Shell" Height="350" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <TextBlock Text="I am ready" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
     </Grid>
 </Window>
