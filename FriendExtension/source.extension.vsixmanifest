@@ -14,5 +14,7 @@
   </Dependencies>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Friend.Infra" Path="|Friend.Infra|" AssemblyName="|Friend.Infra;AssemblyName|" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="QueryWindow" Path="|QueryWindow|" AssemblyName="|QueryWindow;AssemblyName|" />
   </Assets>
 </PackageManifest>

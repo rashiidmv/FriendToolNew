@@ -7,7 +7,7 @@ using QueryWindow;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace FriendMain
+namespace FriendExtension
 {
     class Bootstrapper : UnityBootstrapper
     {
@@ -16,34 +16,37 @@ namespace FriendMain
             return Container.Resolve<Shell>();
         }
 
-        protected override void InitializeShell()
-        {
-            base.InitializeShell();
-
-            Window mainWindow = (Window)Shell;
-            mainWindow.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            App.Current.MainWindow = mainWindow;
-            App.Current.MainWindow.Show();
-        }
 
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
+
             Container.RegisterType<IShellViewModel, ShellViewModel>();
         }
-
         protected override IModuleCatalog CreateModuleCatalog()
         {
             ModuleCatalog m = new ModuleCatalog();
-            m.AddModule(typeof(QueryWindowModule));
+            m.AddModule(typeof(QueryWindowModule)); 
             return m;
         }
+
+        protected override void InitializeShell()
+        {
+            base.InitializeShell();
+        }
+
 
         protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
         {
             RegionAdapterMappings rm = base.ConfigureRegionAdapterMappings();
             rm.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPanelRegionAdapter>());
             return rm;
+        }
+
+        public UserControl GetShell()
+        {
+            ((UserControl)Shell).Visibility = Visibility.Visible;
+            return (UserControl)Shell;
         }
     }
 }

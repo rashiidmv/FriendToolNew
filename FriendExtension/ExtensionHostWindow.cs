@@ -37,18 +37,15 @@ namespace FriendExtension
             // the object returned by the Content property.
 
 
-            //Bootstrapper b = new Bootstrapper();
-            //b.Run();
-            //this.Content = b.GetShell();
-            //control = (Shell)b.GetShell();
+            Bootstrapper b = new Bootstrapper();
+            b.Run();
+            this.Content = b.GetShell();
+            control = (Shell)b.GetShell();
 
-            this.Content = new Shell();
-            control = new Shell();
-            base.Content = control;
 
-            this.ToolBar = new CommandID(new Guid(ExtensionCommand.guidFirstToolWindowPackageCmdSet),
-            ExtensionCommand.ToolbarID);
-            this.ToolBarLocation = (int)VSTWT_LOCATION.VSTWT_TOP;
+            //this.ToolBar = new CommandID(new Guid(ExtensionCommand.guidFirstToolWindowPackageCmdSet),
+            //ExtensionCommand.ToolbarID);
+            //this.ToolBarLocation = (int)VSTWT_LOCATION.VSTWT_TOP;
         }
 
         public Shell control;

@@ -34,7 +34,7 @@
     <!--Buttons section. -->
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
-    <Menus>
+    <!--<Menus>
       <Menu guid="guidFirstToolWindowPackageCmdSet" id="ToolbarID" priority="0x0000" type="ToolWindowToolbar">
         <Parent guid="guidFirstToolWindowPackageCmdSet" id="ToolbarID" />
         <Strings>
@@ -42,7 +42,7 @@
           <CommandName>Tool Window Toolbar</CommandName>
         </Strings>
       </Menu>
-    </Menus>
+    </Menus>-->
     <Buttons>
       
       <!--To define a menu group you have to specify its ID, the parent menu and its display priority.

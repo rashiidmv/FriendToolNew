@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ShellViewModel.cs" />
     <Page Include="Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +78,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="IShellViewModel.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -113,6 +115,10 @@
     <ProjectReference Include="..\Friend.Infra\Friend.Infra.csproj">
       <Project>{dbf30d16-4c3c-467b-9284-41911d4755c1}</Project>
       <Name>Friend.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\QueryWindow\QueryWindow.csproj">
+      <Project>{2318c814-d035-4036-b75f-e2f0e421dca1}</Project>
+      <Name>QueryWindow</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

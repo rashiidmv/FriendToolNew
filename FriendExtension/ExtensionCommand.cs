@@ -1,15 +1,7 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="ExtensionCommand.cs" company="PricewaterhouseCoopers LLP">
-//     Copyright (c) PricewaterhouseCoopers LLP.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
+﻿using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.ComponentModel.Design;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System.Windows.Forms;
-using System.Xml;
 
 namespace FriendExtension
 {
@@ -108,39 +100,39 @@ namespace FriendExtension
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
             Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
 
-            var mcs = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            var toolbarbtnCmdID = new CommandID(new Guid(ExtensionCommand.guidFirstToolWindowPackageCmdSet),
-                ExtensionCommand.cmdidWindowsMediaOpen);
-            var menuItem = new MenuCommand(new EventHandler(
-                ButtonHandler), toolbarbtnCmdID);
+            //var mcs = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            //var toolbarbtnCmdID = new CommandID(new Guid(ExtensionCommand.guidFirstToolWindowPackageCmdSet),
+            //    ExtensionCommand.cmdidWindowsMediaOpen);
+            //var menuItem = new MenuCommand(new EventHandler(
+            //    ButtonHandler), toolbarbtnCmdID);
 
-            MenuCommand menuCommand = mcs.FindCommand(menuItem.CommandID);
-            if(menuCommand==null)
-                mcs.AddCommand(menuItem);
+            //MenuCommand menuCommand = mcs.FindCommand(menuItem.CommandID);
+            //if(menuCommand==null)
+            //    mcs.AddCommand(menuItem);
         }
-        private void ButtonHandler(object sender, EventArgs arguments)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            DialogResult result = openFileDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                //window.control.MediaPlayer.Source = new System.Uri(openFileDialog.FileName);
-                //window.control.ReportConfigFilePath = openFileDialog.FileName;
-                try
-                {
-                    window.control.ReportConfigFile.Load(openFileDialog.FileName);
-                    window.control.ParseConfigFile();
-                }
-                catch (XmlException ex)
-                {
-                    //Do nothing file is not an xml file
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("File is not in RightAngle compatible format, Parsing Error Occured");
-                }
+        //private void ButtonHandler(object sender, EventArgs arguments)
+        //{
+        //    OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    DialogResult result = openFileDialog.ShowDialog();
+        //    if (result == DialogResult.OK)
+        //    {
+        //        //window.control.MediaPlayer.Source = new System.Uri(openFileDialog.FileName);
+        //        //window.control.ReportConfigFilePath = openFileDialog.FileName;
+        //        try
+        //        {
+        //            window.control.ReportConfigFile.Load(openFileDialog.FileName);
+        //            window.control.ParseConfigFile();
+        //        }
+        //        catch (XmlException ex)
+        //        {
+        //            //Do nothing file is not an xml file
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("File is not in RightAngle compatible format, Parsing Error Occured");
+        //        }
                
-            }
-        }
+        //    }
+        //}
     }
 }

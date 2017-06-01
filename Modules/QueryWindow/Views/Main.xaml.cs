@@ -1,11 +1,11 @@
-﻿namespace FriendExtension
-{
-    using Friend.Infra;
-    using System.Windows.Controls;
+﻿using Friend.Infra;
+using System.Windows.Controls;
 
-    public partial class Shell : UserControl, IView
+namespace QueryWindow.Views
+{
+    public partial class Main : UserControl, IView
     {
-        public Shell(IShellViewModel vm)
+        public Main(IMainViewModel vm)
         {
             InitializeComponent();
             ViewModel = vm;
@@ -15,7 +15,7 @@
         {
             get
             {
-                return (IViewModel)DataContext;
+                return (IViewModel)DataContext; ;
             }
 
             set
