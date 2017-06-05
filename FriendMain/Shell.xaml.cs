@@ -1,4 +1,5 @@
 ﻿using Friend.Infra;
+using System;
 using System.Windows;
 
 namespace FriendMain
@@ -8,7 +9,10 @@ namespace FriendMain
         public Shell(IShellViewModel vm)
         {
             InitializeComponent();
-            ViewModel = vm;
+            var myResourceDictionary = new ResourceDictionary();
+                myResourceDictionary.Source = new Uri("pack://application:,,,/Friend.Infra;Component/FriendResources.xaml", UriKind.Absolute);
+                Resources.MergedDictionaries.Add(myResourceDictionary);
+                ViewModel = vm;
         }
 
         public IViewModel ViewModel

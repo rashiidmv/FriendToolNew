@@ -8,8 +8,8 @@
              xmlns:views="clr-namespace:QueryWindow.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <ContentControl>
         <Button Content="Query Window" Command="{x:Static infra:ApllicationCommands.NavigationCommand}" 
                 CommandParameter="{x:Type views:Main}"/>
-    </Grid>
+    </ContentControl>
 </UserControl>
