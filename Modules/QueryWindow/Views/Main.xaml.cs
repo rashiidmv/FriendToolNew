@@ -1,4 +1,5 @@
 ﻿using Friend.Infra;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace QueryWindow.Views
@@ -23,5 +24,6 @@ namespace QueryWindow.Views
                 DataContext = value;
             }
         }
+
     }
 }

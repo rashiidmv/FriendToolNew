@@ -55,7 +55,11 @@
       <DependentUpon>Open.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryResult.cs" />
     <Compile Include="QueryWindowModule.cs" />
+    <Compile Include="Usercontrols\Intellisense.xaml.cs">
+      <DependentUpon>Intellisense.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IMainViewModel.cs" />
     <Compile Include="Views\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -70,6 +74,15 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Navigation\Open.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="QueryWindowResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Page Include="Usercontrols\Intellisense.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
