@@ -22,7 +22,7 @@ namespace QueryWindow.Views
             get { return "Query Window"; }
             set { title = value; }
         }
-
+               
 
         private List<string> dataBaseNames;
 
@@ -207,10 +207,11 @@ namespace QueryWindow.Views
             get { return currentDatabase; }
             set
             {
+                string previousValue = currentDatabase;
                 currentDatabase = value;
                 OnPropertyChanged("CurrentDatabase");
                 ExecuteQueryCommand.RaiseCanExecuteChanged();
-                if (currentDatabase != null && currentDatabase != String.Empty)
+                if (currentDatabase != null && currentDatabase != String.Empty && !currentDatabase.Equals(previousValue))
                 {
                     tableNames = new List<string>();
                     GetAllTables();
@@ -366,9 +367,9 @@ namespace QueryWindow.Views
             EditResultCommand = new DelegateCommand<QueryResult>(ExecuteEdit, CanExecuteEdit);
             ServerConfigHeader = "Connect to database server";
             //Temporary code
-            ServerName = "rvayalil00190";
-            QueryString = "Select * from categories";
-            GetDataBaseNames();
+            //ServerName = "rvayalil00190";
+            //QueryString = "Select * from categories";
+            //GetDataBaseNames();
         }
 
 
@@ -379,6 +380,7 @@ namespace QueryWindow.Views
 
         private void ExecuteEdit(QueryResult parameter)
         {
+            CurrentDatabase = parameter.Database;
             QueryString = parameter.Query;
         }
 
@@ -427,6 +429,8 @@ namespace QueryWindow.Views
                         QueryAndResult = new ObservableCollection<QueryResult>();
                     }
                     QueryResult qr = new QueryResult();
+                    qr.Server = ServerName;
+                    qr.Database = CurrentDatabase;
                     qr.Query = QueryString.Trim();
                     qr.Result = dbDataSet.Tables[0].DefaultView;
                     QueryAndResult.Add(qr);

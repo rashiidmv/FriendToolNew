@@ -13,10 +13,17 @@
     <DockPanel  LastChildFill="True">
         <Expander DockPanel.Dock="Top" Header="{Binding ServerConfigHeader}"  FontWeight="Bold"  
           ExpandDirection="Down" IsExpanded="False">
+            <DockPanel LastChildFill="True">
+                <Button DockPanel.Dock="Bottom" Content="Connect"  Focusable="True" IsDefault="True"
+                        FontWeight="Normal" Command="{Binding GetDbNamesCommand}" ToolTip="Connect to server" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <WrapPanel  Orientation="Horizontal"  >
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Server name:" VerticalAlignment="Center"  FontWeight="Normal"/>
-                    <TextBox  FontWeight="Normal" Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Enter server name"/>
+                    <TextBox  FontWeight="Normal" Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Enter server name">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Path=GetDbNamesCommand}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </StackPanel>
                 <CheckBox FontWeight="Normal"  FontStyle="Italic"  VerticalAlignment="Center" Content="SQL Server Authentication" Name="SqlAuthentication" IsChecked="{Binding IsSqlAuthentication}"/>
                 <StackPanel Orientation="Horizontal">
@@ -29,8 +36,8 @@
                     <TextBox  FontWeight="Normal" Text="{Binding Password}" IsEnabled="{Binding ElementName=SqlAuthentication,Path=IsChecked}"
                          ToolTip="Enter password"/>
                 </StackPanel>
-                <Button Content="Connect" FontWeight="Normal" Command="{Binding GetDbNamesCommand}" ToolTip="Connect to server"/>
             </WrapPanel>
+            </DockPanel>
         </Expander>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Text="Database:" VerticalAlignment="Center" />
@@ -65,7 +72,8 @@
                  </Popup>-->
                 <WrapPanel Grid.Row="1" Width="Auto">
                     <CheckBox Content="Hold last results" IsChecked="{Binding HoldLastResult}" VerticalAlignment="Center" Width="110"/>
-                    <Button Margin="0" Width="100" Content="Execute" Command="{Binding ExecuteQueryCommand}"/>
+                    <Button Margin="0" Width="100" Content="Execute" 
+                             Focusable="True" IsDefault="True" Command="{Binding ExecuteQueryCommand}"/>
                 </WrapPanel>
             </Grid>
             <ScrollViewer Margin="0,6,0,0" VerticalScrollBarVisibility="Auto">

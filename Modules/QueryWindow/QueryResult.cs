@@ -10,6 +10,22 @@ namespace QueryWindow
 {
     public class QueryResult : ViewModelBase 
     {
+        private string server;
+
+        public string Server
+        {
+            get { return server; }
+            set { server = value; }
+        }
+
+        private string database;
+
+        public string Database
+        {
+            get { return database; }
+            set { database = value; }
+        }
+
         private string query;
 
         public string Query
@@ -29,6 +45,14 @@ namespace QueryWindow
                 OnPropertyChanged("Result");
             }
         }
+
+
+        public string ConnectionDetails
+        {
+            get { return "Connected server is \""+Server+"\" and Database is \""+Database+"\""; }
+            
+        }
+
 
     }
 }

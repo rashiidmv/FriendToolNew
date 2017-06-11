@@ -52,6 +52,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3C0BF9BC1AF46ED971E0C82C2F45E3C2"
+        "OwnerKey" = "8:_51F154D74F42180CFC2CDD4005E94300"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C0BF9BC1AF46ED971E0C82C2F45E3C2"
         "OwnerKey" = "8:_E45547A1148A47B88A1DF9A9302C0641"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -59,6 +65,12 @@
         {
         "MsmKey" = "8:_3C0BF9BC1AF46ED971E0C82C2F45E3C2"
         "OwnerKey" = "8:_29DED5E2E46D189799D0C9E905B309AE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_51F154D74F42180CFC2CDD4005E94300"
+        "OwnerKey" = "8:_E45547A1148A47B88A1DF9A9302C0641"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -71,6 +83,12 @@
         {
         "MsmKey" = "8:_76620EC2BADFFCB537E4DF9E11A8124A"
         "OwnerKey" = "8:_0714EB775D6855A559EB4663B46797C3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_76620EC2BADFFCB537E4DF9E11A8124A"
+        "OwnerKey" = "8:_51F154D74F42180CFC2CDD4005E94300"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,14 +141,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E45547A1148A47B88A1DF9A9302C0641"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_901F7BAC027D778955048964122EAAF4"
+        "OwnerKey" = "8:_51F154D74F42180CFC2CDD4005E94300"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1A57B27C4714F5A03F87E06CAF70F0BC"
+        "MsmKey" = "8:_E45547A1148A47B88A1DF9A9302C0641"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -143,6 +161,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0714EB775D6855A559EB4663B46797C3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_51F154D74F42180CFC2CDD4005E94300"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -173,6 +197,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_83B03AE63F9F134A22315152452FA2DB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1A57B27C4714F5A03F87E06CAF70F0BC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -232,6 +262,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -389,6 +427,37 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.Practices.Unity.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7EBEDFB6064640688844F42CE1E4F527"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_51F154D74F42180CFC2CDD4005E94300"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Help, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_51F154D74F42180CFC2CDD4005E94300"
+                    {
+                    "Name" = "8:Help.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Help.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7EBEDFB6064640688844F42CE1E4F527"
@@ -569,7 +638,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:QueryWindowInstaller"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:PricewaterhouseCoopers LLP"
+        "ARPCONTACT" = "8:Rashid MV"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"

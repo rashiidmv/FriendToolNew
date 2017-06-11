@@ -1,11 +1,9 @@
-﻿using Friend.Infra;
+﻿using Help;
 using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.UnityExtensions;
 using Microsoft.Practices.Unity;
 using QueryWindow;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QueryWindowMain
 {
@@ -36,14 +34,8 @@ namespace QueryWindowMain
         {
             ModuleCatalog m = new ModuleCatalog();
             m.AddModule(typeof(QueryWindowModule));
+            m.AddModule(typeof(HelpModule));
             return m;
-        }
-
-        protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
-        {
-            RegionAdapterMappings rm = base.ConfigureRegionAdapterMappings();
-            rm.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPanelRegionAdapter>());
-            return rm;
         }
     }
 }

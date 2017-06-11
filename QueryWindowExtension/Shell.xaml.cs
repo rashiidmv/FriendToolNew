@@ -1,11 +1,11 @@
-﻿using Friend.Infra;
-using System;
-using System.Windows;
-
-namespace QueryWindowMain
+﻿namespace QueryWindowExtension
 {
-
-    public partial class Shell : Window, IView
+    using Friend.Infra;
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Resources;
+    public partial class Shell : UserControl, IView
     {
         public Shell(IShellViewModel vm)
         {
@@ -14,9 +14,22 @@ namespace QueryWindowMain
             myResourceDictionary.Source = new Uri("pack://application:,,,/Friend.Infra;Component/FriendResources.xaml", UriKind.Absolute);
             Resources.MergedDictionaries.Add(myResourceDictionary);
             ViewModel = vm;
+            ViewMode = FlowDocumentReaderViewingMode.Scroll;
+
         }
 
-          public IViewModel ViewModel
+        private FlowDocumentReaderViewingMode viewMode;
+
+        public FlowDocumentReaderViewingMode ViewMode
+        {
+            get { return viewMode; }
+            set
+            {
+                viewMode = value;
+            }
+        }
+
+        public IViewModel ViewModel
         {
             get
             {

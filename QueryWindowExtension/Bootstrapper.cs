@@ -8,7 +8,7 @@ using QueryWindow;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace FriendExtension
+namespace QueryWindowExtension
 {
     class Bootstrapper : UnityBootstrapper
     {

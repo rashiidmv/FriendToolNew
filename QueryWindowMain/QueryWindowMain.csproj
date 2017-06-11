@@ -113,6 +113,10 @@
       <Project>{dbf30d16-4c3c-467b-9284-41911d4755c1}</Project>
       <Name>Friend.Infra</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Help\Help.csproj">
+      <Project>{9c72abe2-0522-4338-ae46-01643b9307c1}</Project>
+      <Name>Help</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\QueryWindow\QueryWindow.csproj">
       <Project>{2318c814-d035-4036-b75f-e2f0e421dca1}</Project>
       <Name>QueryWindow</Name>

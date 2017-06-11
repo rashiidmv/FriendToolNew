@@ -10,11 +10,10 @@ namespace FriendMain
         {
             InitializeComponent();
             var myResourceDictionary = new ResourceDictionary();
-                myResourceDictionary.Source = new Uri("pack://application:,,,/Friend.Infra;Component/FriendResources.xaml", UriKind.Absolute);
-                Resources.MergedDictionaries.Add(myResourceDictionary);
-                ViewModel = vm;
+            myResourceDictionary.Source = new Uri("pack://application:,,,/Friend.Infra;Component/FriendResources.xaml", UriKind.Absolute);
+            Resources.MergedDictionaries.Add(myResourceDictionary);
+            ViewModel = vm;
         }
-
         public IViewModel ViewModel
         {
             get

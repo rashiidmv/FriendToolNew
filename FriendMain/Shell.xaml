@@ -6,8 +6,10 @@
         xmlns:prism="http://www.codeplex.com/CompositeWPF"
         xmlns:infra="clr-namespace:Friend.Infra;assembly=Friend.Infra"
         xmlns:local="clr-namespace:FriendMain"
+         MinHeight="670" MinWidth="910" Width="910" Height="670"
         mc:Ignorable="d"
-        Title="Query Window" Height="350" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterScreen">
+        Title="Friend"  HorizontalAlignment="Center" VerticalAlignment="Center" 
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style  x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
             <Setter Property="Background" Value="AliceBlue" />
@@ -15,10 +17,21 @@
         <Style TargetType="Grid">
             <Setter Property="Background" Value="Azure" />
         </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Header" Value="{Binding DataContext.Title}"/>
+        </Style>
+        <Style TargetType="FlowDocumentReader">
+            <Setter Property="ViewingMode" Value="TwoPage"/>
+            <Setter Property="Width" Value="{Binding Path=MinWidth, RelativeSource={RelativeSource AncestorType={x:Type Window},Mode=FindAncestor}}"/>
+            <Setter Property="Height" Value="{Binding Path=MinHeight, RelativeSource={RelativeSource AncestorType={x:Type Window},Mode=FindAncestor}}"/>
+        </Style>
     </Window.Resources>
-    <DockPanel LastChildFill="True">
-        <StackPanel  Orientation="Vertical" Style="{StaticResource StackPanelStyle}"
-            DockPanel.Dock="Left" prism:RegionManager.RegionName="{x:Static infra:RegionNames.ToolbarRegion}" />
-        <ContentControl prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContentRegion}" />
-        </DockPanel>
+    <DockPanel LastChildFill="True" 
+               >
+        <!--<StackPanel  Orientation="Vertical" Style="{StaticResource StackPanelStyle}"
+            DockPanel.Dock="Left" prism:RegionManager.RegionName="{x:Static infra:RegionNames.ToolbarRegion}" />-->
+        <TabControl  prism:RegionManager.RegionName="{x:Static infra:RegionNames.ContentRegion}">
+        </TabControl>
+
+    </DockPanel>
 </Window>

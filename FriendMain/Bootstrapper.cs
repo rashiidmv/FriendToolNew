@@ -1,4 +1,5 @@
 ﻿using Friend.Infra;
+using Help;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -16,7 +17,7 @@ namespace FriendMain
             return Container.Resolve<Shell>();
         }
 
-        protected override void InitializeShell()
+        protected override void InitializeShell() 
         {
             base.InitializeShell();
 
@@ -36,6 +37,7 @@ namespace FriendMain
         {
             ModuleCatalog m = new ModuleCatalog();
             m.AddModule(typeof(QueryWindowModule));
+            m.AddModule(typeof(HelpModule));
             return m;
         }
 

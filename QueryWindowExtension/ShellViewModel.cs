@@ -3,7 +3,8 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 using System;
-namespace FriendMain
+
+namespace QueryWindowExtension
 {
     public class ShellViewModel : IShellViewModel
     {

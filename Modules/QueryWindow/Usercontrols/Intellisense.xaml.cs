@@ -98,7 +98,7 @@ namespace QueryWindow.Usercontrols
                     // Move focus back to the text box.
                     // This will auto-hide the PopUp due to StaysOpen="false"
                     txtQueryString.Focus();
-                    PopupIntellisense.IsOpen = false;
+                  //  PopupIntellisense.IsOpen = false;
                     break;
 
                 case System.Windows.Input.Key.Escape:

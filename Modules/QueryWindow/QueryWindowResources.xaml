@@ -26,10 +26,11 @@
                 <TextBlock MaxHeight="80"
                            Foreground="Green"
                     MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
-                           Text="{Binding Query}" TextWrapping="Wrap" 
+                           Text="{Binding Query}" TextWrapping="Wrap"
+                           ToolTip="{Binding ConnectionDetails}"
                            FontStyle="Italic" FontWeight="Bold" Grid.Row="0"/>
             </StackPanel>
-            <DataGrid MaxHeight="240"  ItemsSource="{Binding Result}" Grid.Row="1"/>
+            <DataGrid MaxHeight="220"  ItemsSource="{Binding Result}" Grid.Row="1"/>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

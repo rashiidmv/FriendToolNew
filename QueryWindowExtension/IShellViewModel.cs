@@ -1,6 +1,6 @@
 ﻿using Friend.Infra;
 
-namespace QueryWindowMain
+namespace QueryWindowExtension
 {
     public interface IShellViewModel : IViewModel
     {

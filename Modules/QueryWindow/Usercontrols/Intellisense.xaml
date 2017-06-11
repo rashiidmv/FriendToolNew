@@ -11,9 +11,10 @@
         <TextBox Name="txtQueryString" Height="180" TextWrapping="Wrap" ToolTip="Enter query to execute"
                           MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
                          Text="{Binding QueryString, UpdateSourceTrigger=PropertyChanged}"
-                         Grid.Row="0" KeyUp="OnFilterTextKeyUp">
+                         Grid.Row="0" KeyUp="OnFilterTextKeyUp"
+                 AcceptsReturn="True" >
             <TextBox.InputBindings>
-                <KeyBinding Command="{Binding Path=ExecuteQueryCommand}" Key="Enter" />
+                <KeyBinding Command="{Binding Path=ExecuteQueryCommand}" Key="F5" />
             </TextBox.InputBindings>
         </TextBox>
         <Popup StaysOpen="False" IsOpen="{Binding IsFoundInSearch}" MaxHeight="120"  
