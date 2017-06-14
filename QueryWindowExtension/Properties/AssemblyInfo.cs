@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("QueryWindowExtension")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Rashid MV")]
 [assembly: AssemblyProduct("QueryWindowExtension")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

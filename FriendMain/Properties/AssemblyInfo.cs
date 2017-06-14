@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("FriendMain")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PricewaterhouseCoopers LLP")]
+[assembly: AssemblyCompany("Rashid MV")]
 [assembly: AssemblyProduct("FriendMain")]
-[assembly: AssemblyCopyright("Copyright © PricewaterhouseCoopers LLP 2017")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Friend.Infra")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PricewaterhouseCoopers LLP")]
+[assembly: AssemblyCompany("Rashid MV")]
 [assembly: AssemblyProduct("Friend.Infra")]
-[assembly: AssemblyCopyright("Copyright © PricewaterhouseCoopers LLP 2017")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

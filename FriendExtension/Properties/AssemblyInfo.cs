@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FriendExtension")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Rashid MV")]
 [assembly: AssemblyProduct("FriendExtension")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

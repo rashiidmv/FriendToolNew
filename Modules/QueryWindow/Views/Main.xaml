@@ -1,55 +1,63 @@
-﻿<UserControl x:Class="QueryWindow.Views.Main"
+﻿<UserControl xmlns:CustomControls="clr-namespace:Friend.Infra.CustomControls;assembly=Friend.Infra" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QueryWindow.Views"
              xmlns:mycontrols="clr-namespace:QueryWindow.Usercontrols"
+            
+             xmlns:QueryWindow="clr-namespace:QueryWindow" x:Class="QueryWindow.Views.Main"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ResourceDictionary Source="../QueryWindowResources.xaml" />
+        <!--<ResourceDictionary Source="../QueryWindowResources.xaml" />-->
+        <ResourceDictionary Source="../QueryWindowResources.xaml"/>
     </UserControl.Resources>
     <DockPanel  LastChildFill="True">
         <Expander DockPanel.Dock="Top" Header="{Binding ServerConfigHeader}"  FontWeight="Bold"  
-          ExpandDirection="Down" IsExpanded="False">
+			ExpandDirection="Down" IsExpanded="False">
             <DockPanel LastChildFill="True">
                 <Button DockPanel.Dock="Bottom" Content="Connect"  Focusable="True" IsDefault="True"
-                        FontWeight="Normal" Command="{Binding GetDbNamesCommand}" ToolTip="Connect to server" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <WrapPanel  Orientation="Horizontal"  >
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="Server name:" VerticalAlignment="Center"  FontWeight="Normal"/>
-                    <TextBox  FontWeight="Normal" Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Enter server name">
-                        <TextBox.InputBindings>
+					FontWeight="Normal" Command="{Binding GetDbNamesCommand}" CommandParameter="{Binding ElementName=txtPassword}" ToolTip="Connect to server" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <WrapPanel  Orientation="Horizontal"  >
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="Server name:" VerticalAlignment="Center"  FontWeight="Normal"/>
+                        <TextBox  FontWeight="Normal" Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Enter server name">
+                            <!--<TextBox.InputBindings>
                             <KeyBinding Command="{Binding Path=GetDbNamesCommand}" Key="Enter" />
-                        </TextBox.InputBindings>
-                    </TextBox>
-                </StackPanel>
-                <CheckBox FontWeight="Normal"  FontStyle="Italic"  VerticalAlignment="Center" Content="SQL Server Authentication" Name="SqlAuthentication" IsChecked="{Binding IsSqlAuthentication}"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock  FontWeight="Normal" Text="User name:" VerticalAlignment="Center" />
-                    <TextBox  FontWeight="Normal" Text="{Binding UserName}" IsEnabled="{Binding ElementName=SqlAuthentication,Path=IsChecked}" 
-                         ToolTip="Enter user name"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock  FontWeight="Normal" Text="Password:" VerticalAlignment="Center" />
-                    <TextBox  FontWeight="Normal" Text="{Binding Password}" IsEnabled="{Binding ElementName=SqlAuthentication,Path=IsChecked}"
-                         ToolTip="Enter password"/>
-                </StackPanel>
-            </WrapPanel>
+                        </TextBox.InputBindings>-->
+                        </TextBox>
+                    </StackPanel>
+                    <CheckBox FontWeight="Normal"  FontStyle="Italic"  VerticalAlignment="Center" Content="SQL Server Authentication" x:Name="SqlAuthentication" IsChecked="{Binding IsSqlAuthentication}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  FontWeight="Normal" Text="User name:" VerticalAlignment="Center" />
+                        <TextBox  FontWeight="Normal" Text="{Binding UserName}" IsEnabled="{Binding IsChecked, ElementName=SqlAuthentication}" 
+							ToolTip="Enter user name"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  FontWeight="Normal" Text="Password:" VerticalAlignment="Center" />
+                        <PasswordBox  FontWeight="Normal" x:Name="txtPassword" IsEnabled="{Binding IsChecked, ElementName=SqlAuthentication}"
+							ToolTip="Enter password"/>
+                    </StackPanel>
+                </WrapPanel>
             </DockPanel>
         </Expander>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <TextBlock Text="Database:" VerticalAlignment="Center" />
             <ComboBox DockPanel.Dock="Top" ItemsSource="{Binding DataBaseNames}" IsEnabled="{Binding CanSelectDB}" SelectedValue="{Binding CurrentDatabase}" ToolTip="Select database"/>
         </StackPanel>
-        <TextBlock MaxHeight="38"
-            DockPanel.Dock="Bottom" Text="{Binding QueryResultStatus}" 
-                   Foreground="{Binding QueryResultStatusColor}"
-                   LineStackingStrategy="BlockLineHeight"
-                   ToolTip="{Binding QueryResultStatusToolTip}"
-                   LineHeight="18"
-                   TextWrapping="WrapWithOverflow" Grid.Row="2"/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+            <CustomControls:MyBusyControl Visibility="{Binding BusyStatus}" Width="16" Height="16" VerticalAlignment="Center" />
+            <TextBlock MaxHeight="38"
+				Text="{Binding QueryResultStatus}" 
+				Foreground="{Binding QueryResultStatusColor}"
+				LineStackingStrategy="BlockLineHeight"
+				ToolTip="{Binding QueryResultStatusToolTip}"
+				LineHeight="18"
+				MaxWidth="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+				TextWrapping="WrapWithOverflow"/>
+
+        </StackPanel>
 
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Top">
@@ -58,29 +66,16 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <mycontrols:Intellisense Grid.Row="0"/>
-                <!--<TextBox Name="txtQueryString" Height="180" TextWrapping="Wrap" ToolTip="Enter query to execute"
-                          MaxWidth="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
-                         Text="{Binding QueryString, UpdateSourceTrigger=PropertyChanged}"
-                         Grid.Row="0" KeyUp="OnFilterTextKeyUp"/>
-                <Popup StaysOpen="False" IsOpen="{Binding IsFoundInSearch}"  
-                       Name="PopupIntellisense"
-                       PlacementTarget="{Binding ElementName=txtQueryString}" Placement="Bottom" >
-                    <ListBox ItemsSource="{Binding SearchResults}" Name="lstIntellisense"
-                                KeyDown="OnMethodsSelectionKeyDown"
-                                SelectedIndex="0"
-                                IsTextSearchEnabled="True"/>
-                 </Popup>-->
                 <WrapPanel Grid.Row="1" Width="Auto">
                     <CheckBox Content="Hold last results" IsChecked="{Binding HoldLastResult}" VerticalAlignment="Center" Width="110"/>
                     <Button Margin="0" Width="100" Content="Execute" 
-                             Focusable="True" IsDefault="True" Command="{Binding ExecuteQueryCommand}"/>
+						Focusable="True" IsDefault="True" Command="{Binding ExecuteQueryCommand}"/>
                 </WrapPanel>
             </Grid>
             <ScrollViewer Margin="0,6,0,0" VerticalScrollBarVisibility="Auto">
                 <ItemsControl 
-                         ItemTemplate="{StaticResource QueryResultTemplate}"
-                          ItemsSource="{Binding QueryAndResult}">
-                </ItemsControl>
+					ItemTemplate="{StaticResource QueryResultTemplate}"
+					ItemsSource="{Binding QueryAndResult}"/>
             </ScrollViewer>
         </DockPanel>
     </DockPanel>

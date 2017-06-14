@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QueryWindow.Views
@@ -15,6 +17,8 @@ namespace QueryWindow.Views
     //Provider=SQLOLEDB.1;Integrated Security = SSPI; Persist Security Info=False
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
+        private bool IsServerChanged = false;
+        private String ConnectionString = String.Empty;
         private string title;
 
         public string Title
@@ -22,7 +26,7 @@ namespace QueryWindow.Views
             get { return "Query Window"; }
             set { title = value; }
         }
-               
+
 
         private List<string> dataBaseNames;
 
@@ -53,13 +57,16 @@ namespace QueryWindow.Views
                 CanSelectDB = false;
                 CurrentDatabase = String.Empty;
                 QueryResultStatus = String.Empty;
+                BusyStatus = Visibility.Collapsed;
+                QueryResultStatusToolTip = String.Empty;
+                IsServerChanged = true;
             }
         }
 
 
-        private DelegateCommand getDbNamesCommand;
+        private DelegateCommand<object> getDbNamesCommand;
 
-        public DelegateCommand GetDbNamesCommand
+        public DelegateCommand<object> GetDbNamesCommand
         {
             get { return getDbNamesCommand; }
             set { getDbNamesCommand = value; }
@@ -143,11 +150,11 @@ namespace QueryWindow.Views
                 else
                 {
                     index = temp.Zip(previous, (c1, c2) => c1 == c2).TakeWhile(b => b).Count() + 1;
-                    index=index - 1;
+                    index = index - 1;
                 }
                 int spaceIndex = 0;
                 string anotherTemp = string.Empty;
-                if (temp != String.Empty && temp.Contains(" ") &&  temp.IndexOf(" ")<= index && index < previous.Length)
+                if (temp != String.Empty && temp.Contains(" ") && temp.IndexOf(" ") <= index && index < previous.Length)
                 {
                     anotherTemp = temp.Substring(0, index);
                     while (anotherTemp.Contains(" "))
@@ -190,7 +197,13 @@ namespace QueryWindow.Views
 
         public string QueryResultStatusToolTip
         {
-            get { return queryResultStatusToolTip; }
+            get
+            {
+                if (queryResultStatusToolTip != String.Empty)
+                    return queryResultStatusToolTip;
+                else
+                    return null;
+            }
             set
             {
                 queryResultStatusToolTip = value;
@@ -299,6 +312,12 @@ namespace QueryWindow.Views
             {
                 isSqlAuthentication = value;
                 OnPropertyChanged("IsSqlAuthentication");
+                //DataBaseNames = null;
+                if (DataBaseNames != null && DataBaseNames.Count > 0)
+                {
+                    CanSelectDB = false;
+                }
+                CurrentDatabase = null;
             }
         }
 
@@ -358,14 +377,27 @@ namespace QueryWindow.Views
             set { cursorPosition = value; }
         }
 
+        private Visibility busyStatus;
+
+        public Visibility BusyStatus
+        {
+            get { return busyStatus; }
+            set {
+                busyStatus = value;
+                OnPropertyChanged("busyStatus");
+            }
+        }
+
 
         public MainViewModel()
         {
-            GetDbNamesCommand = new DelegateCommand(GetDataBaseNames, CanGetDataBaseNames);
+            
+            GetDbNamesCommand = new DelegateCommand<object>(GetDataBaseNames, CanGetDataBaseNames);
             ExecuteQueryCommand = new DelegateCommand(ExecuteQuery, CanExecuteQuery);
             DeleteResultCommand = new DelegateCommand<QueryResult>(ExecuteDelete, CanExecuteDelete);
             EditResultCommand = new DelegateCommand<QueryResult>(ExecuteEdit, CanExecuteEdit);
             ServerConfigHeader = "Connect to database server";
+            BusyStatus = Visibility.Collapsed;
             //Temporary code
             //ServerName = "rvayalil00190";
             //QueryString = "Select * from categories";
@@ -380,8 +412,18 @@ namespace QueryWindow.Views
 
         private void ExecuteEdit(QueryResult parameter)
         {
+            IsSqlAuthentication = parameter.IsSQLAuthenticated;
             CurrentDatabase = parameter.Database;
             QueryString = parameter.Query;
+            if (parameter.IsSQLAuthenticated)
+            {
+                Password = parameter.Password;
+                UserName = parameter.Username;
+            }
+            if (DataBaseNames.Count > 0)
+            {
+                CanSelectDB = true;
+            }
         }
 
         private bool CanExecuteDelete(QueryResult parameter)
@@ -406,43 +448,54 @@ namespace QueryWindow.Views
             {
                 QueryResultStatusColor = "Blue";
                 QueryResultStatus = "Executing Query..!";
+                BusyStatus = Visibility.Visible;
                 QueryResultStatusToolTip = QueryResultStatus;
-                String connectionString = "Data Source=" + ServerName + ";Initial Catalog=" + CurrentDatabase + ";Integrated Security=True";
-                DataSet dbDataSet = new DataSet();
-                try
+                String connectionString = "Data Source=" + ServerName + ";Initial Catalog=" + CurrentDatabase;
+                if (CreateConnectionString(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    DataSet dbDataSet = new DataSet();
+                    try
                     {
-                        conn.Open();
-                        using (SqlCommand cmd = conn.CreateCommand())
+                        using (SqlConnection conn = new SqlConnection(ConnectionString))
                         {
-                            cmd.CommandText = QueryString.Trim();
-                            cmd.CommandType = CommandType.Text;
-                            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                            conn.Open();
+                            using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                da.Fill(dbDataSet);
+                                cmd.CommandText = QueryString.Trim();
+                                cmd.CommandType = CommandType.Text;
+                                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                                {
+                                    da.Fill(dbDataSet);
+                                }
                             }
                         }
+                        if (!HoldLastResult || QueryAndResult == null)
+                        {
+                            QueryAndResult = new ObservableCollection<QueryResult>();
+                        }
+                        QueryResult qr = new QueryResult();
+                        qr.Server = ServerName;
+                        qr.Database = CurrentDatabase;
+                        qr.IsSQLAuthenticated = IsSqlAuthentication;
+                        if (IsSqlAuthentication)
+                        {
+                            qr.Password = Password;
+                            qr.Username = UserName;
+                        }
+                        qr.Query = QueryString.Trim();
+                        qr.Result = dbDataSet.Tables[0].DefaultView;
+                        QueryAndResult.Add(qr);
                     }
-                    if (!HoldLastResult || QueryAndResult == null)
+                    catch (Exception ex)
                     {
-                        QueryAndResult = new ObservableCollection<QueryResult>();
+                        FormatExceptionMessage(ex);
+                        return;
                     }
-                    QueryResult qr = new QueryResult();
-                    qr.Server = ServerName;
-                    qr.Database = CurrentDatabase;
-                    qr.Query = QueryString.Trim();
-                    qr.Result = dbDataSet.Tables[0].DefaultView;
-                    QueryAndResult.Add(qr);
+                    QueryResultStatusColor = "Green";
+                    QueryResultStatus = "Query Executed Successfully..!";
+                    BusyStatus = Visibility.Collapsed;
+                    QueryResultStatusToolTip = QueryResultStatus;
                 }
-                catch (Exception ex)
-                {
-                    FormatExceptionMessage(ex);
-                    return;
-                }
-                QueryResultStatusColor = "Green";
-                QueryResultStatus = "Query Executed Successfully..!";
-                QueryResultStatusToolTip = QueryResultStatus;
             }
         }
 
@@ -466,58 +519,94 @@ namespace QueryWindow.Views
             }
             QueryResultStatusColor = "Red";
             QueryResultStatus = ex.Message;
+            BusyStatus = Visibility.Collapsed;
             return;
         }
 
-        private bool CanGetDataBaseNames()
+        private bool CanGetDataBaseNames(object parameter)
         {
             return ServerName != null && ServerName != String.Empty;
         }
 
-        private async void GetDataBaseNames()
+        private async void GetDataBaseNames(object parameter)
         {
+            PasswordBox passwordBox = parameter as PasswordBox;
+            if (passwordBox.Password != null && passwordBox.Password != String.Empty)
+            {
+                Password = passwordBox.Password;
+            }
             await Task.Run(() =>
             {
                 if (ServerName != null && ServerName != String.Empty)
                 {
-                    List<string> dataBaseNames = new List<string>();
-                    QueryResultStatusColor = "Blue";
-                    QueryResultStatus = "Connecting to server..!";
-                    QueryResultStatusToolTip = QueryResultStatus;
-                    String connectionString = "Data Source=" + ServerName + ";Integrated Security=True";
-                    DataSet dbDataSet = new DataSet();
-                    try
+                    if (IsServerChanged || (IsSqlAuthentication && (UserName != null || Password != null)))
                     {
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        List<string> dataBaseNames = new List<string>();
+                        QueryResultStatusColor = "Blue";
+                        QueryResultStatus = "Connecting to server..!";
+                        BusyStatus = Visibility.Visible;
+                        QueryResultStatusToolTip = QueryResultStatus;
+                        String connectionString = "Data Source=" + ServerName;
+                        if (CreateConnectionString(connectionString))
                         {
-                            conn.Open();
-                            using (SqlCommand cmd = conn.CreateCommand())
+                            DataSet dbDataSet = new DataSet();
+                            try
                             {
-                                cmd.CommandText = "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')";
-                                cmd.CommandType = CommandType.Text;
-                                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                                using (SqlConnection conn = new SqlConnection(ConnectionString))
                                 {
-                                    da.Fill(dbDataSet);
+                                    conn.Open();
+                                    using (SqlCommand cmd = conn.CreateCommand())
+                                    {
+                                        cmd.CommandText = "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')";
+                                        cmd.CommandType = CommandType.Text;
+                                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                                        {
+                                            da.Fill(dbDataSet);
+                                        }
+                                    }
                                 }
                             }
+                            catch (Exception ex)
+                            {
+                                FormatExceptionMessage(ex);
+                                return;
+                            }
+                            QueryResultStatusColor = "Green";
+                            QueryResultStatus = "Connected to server Successfully..!";
+                            BusyStatus = Visibility.Collapsed;
+                            QueryResultStatusToolTip = QueryResultStatus;
+                            foreach (DataRow item in dbDataSet.Tables[0].Rows)
+                            {
+                                dataBaseNames.Add(item[0].ToString());
+                            }
+                            DataBaseNames = dataBaseNames;
+                            IsServerChanged = false;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        FormatExceptionMessage(ex);
-                        return;
-                    }
                     CanSelectDB = true;
-                    QueryResultStatusColor = "Green";
-                    QueryResultStatus = "Connected to server Successfully..!";
-                    QueryResultStatusToolTip = QueryResultStatus;
-                    foreach (DataRow item in dbDataSet.Tables[0].Rows)
-                    {
-                        dataBaseNames.Add(item[0].ToString());
-                    }
-                    DataBaseNames = dataBaseNames;
                 }
             });
+        }
+
+        private bool CreateConnectionString(string connectionString)
+        {
+            if (IsSqlAuthentication)
+            {
+                if (UserName == null || UserName == String.Empty ||
+                    Password == null || Password == String.Empty)
+                {
+                    QueryResultStatusColor = "Red";
+                    QueryResultStatus = "Username or Password cann't be empty..!";
+                    return false;
+                }
+                connectionString = connectionString + ";Integrated Security=False" + ";Password=" + Password + ";User ID=" + UserName;
+            }
+            else
+            {
+                connectionString = connectionString + ";Integrated Security=True";
+            }
+            ConnectionString = connectionString;
+            return true;
         }
 
         List<string> tableNames = new List<string>();
@@ -527,34 +616,38 @@ namespace QueryWindow.Views
             {
                 if (ServerName != null && ServerName != String.Empty)
                 {
-                    String connectionString = "Data Source=" + ServerName + ";Initial Catalog=" + CurrentDatabase + ";Integrated Security=True";
-                    DataSet dbDataSet = new DataSet();
-                    try
+                    String connectionString = "Data Source=" + ServerName + ";Initial Catalog=" + CurrentDatabase;
+                    if (CreateConnectionString(connectionString))
                     {
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        DataSet dbDataSet = new DataSet();
+                        try
                         {
-                            conn.Open();
-                            using (SqlCommand cmd = conn.CreateCommand())
+                            using (SqlConnection conn = new SqlConnection(ConnectionString))
                             {
-                                cmd.CommandText = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
-                                cmd.CommandType = CommandType.Text;
-                                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                                conn.Open();
+                                using (SqlCommand cmd = conn.CreateCommand())
                                 {
-                                    da.Fill(dbDataSet);
+                                    cmd.CommandText = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
+                                    cmd.CommandType = CommandType.Text;
+                                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                                    {
+                                        da.Fill(dbDataSet);
+                                    }
                                 }
                             }
                         }
-                    }
-                    catch (Exception)
-                    {
-                        return;
-                    }
-                    foreach (DataRow item in dbDataSet.Tables[0].Rows)
-                    {
-                        tableNames.Add(item[0].ToString());
+                        catch (Exception)
+                        {
+                            return;
+                        }
+                        foreach (DataRow item in dbDataSet.Tables[0].Rows)
+                        {
+                            tableNames.Add(item[0].ToString());
+                        }
                     }
                 }
             });
         }
+
     }
 }

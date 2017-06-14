@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("QueryWindow")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("PricewaterhouseCoopers LLP")]
+[assembly: AssemblyCompany("Rashid MV")]
 [assembly: AssemblyProduct("QueryWindow")]
-[assembly: AssemblyCopyright("Copyright © PricewaterhouseCoopers LLP 2017")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

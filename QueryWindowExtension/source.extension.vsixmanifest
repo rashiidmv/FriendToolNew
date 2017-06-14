@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="QueryWindowExtension.PricewaterhouseCoopers LLP.71347ead-0b2f-44f3-bd02-03222da9ca3f" Version="1.0" Language="en-US" Publisher="Rashid MV" />
+    <Identity Id="QueryWindowExtension.Rashid MV.71347ead-0b2f-44f3-bd02-03222da9ca3f" Version="1.0" Language="en-US" Publisher="Rashid MV" />
     <DisplayName>Query Window</DisplayName>
-    <Description xml:space="preserve"></Description>
+    <Description xml:space="preserve">Query Window is a developer friendly tool. This tool will help developer in querying SQL Server databases with out using SQL Server management studio. The Author like to call this as a Mini SQL Server Management studio. This tool is available as both standalone application and as an extension to visual studio 2013 and above.Query Window is a developer friendly tool. This tool will help developer in querying SQL Server databases with out using SQL Server management studio. The Author like to call this as a Mini SQL Server Management studio. This tool is available as both standalone application and as an extension to visual studio 2013 and above.</Description>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />

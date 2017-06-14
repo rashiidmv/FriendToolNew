@@ -1,20 +1,7 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="ExtensionPackage.cs" company="PricewaterhouseCoopers LLP">
-//     Copyright (c) PricewaterhouseCoopers LLP.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 
 namespace FriendExtension
 {
@@ -36,7 +23,7 @@ namespace FriendExtension
     /// </para>
     /// </remarks>
 
-    
+
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideMenuResource("Menus.ctmenu", 1)]

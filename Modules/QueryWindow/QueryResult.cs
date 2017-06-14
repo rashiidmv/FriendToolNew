@@ -8,8 +8,47 @@ using System.Threading.Tasks;
 
 namespace QueryWindow
 {
-    public class QueryResult : ViewModelBase 
+    public class QueryResult : ViewModelBase
     {
+        private bool isSQLAuthenticated;
+
+        public bool IsSQLAuthenticated
+        {
+            get { return isSQLAuthenticated; }
+            set
+            {
+                isSQLAuthenticated = value;
+                OnPropertyChanged("IsSQLAuthenticated");
+
+            }
+        }
+
+        private string password;
+
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged("Password");
+            }
+        }
+
+        private string username;
+
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                username = value;
+                OnPropertyChanged("Username");
+            }
+        }
+
+
+
         private string server;
 
         public string Server
@@ -31,7 +70,9 @@ namespace QueryWindow
         public string Query
         {
             get { return query; }
-            set { query = value;
+            set
+            {
+                query = value;
                 OnPropertyChanged("Query");
             }
         }
@@ -41,7 +82,9 @@ namespace QueryWindow
         public DataView Result
         {
             get { return result; }
-            set { result = value;
+            set
+            {
+                result = value;
                 OnPropertyChanged("Result");
             }
         }
@@ -49,8 +92,19 @@ namespace QueryWindow
 
         public string ConnectionDetails
         {
-            get { return "Connected server is \""+Server+"\" and Database is \""+Database+"\""; }
-            
+            get
+            {
+                if (IsSQLAuthenticated)
+                {
+                    return "Connected server is \"" + Server + "\" and Database is \"" + Database + "\" with SQL Authentication";
+
+                }
+                else
+                {
+                    return "Connected server is \"" + Server + "\" and Database is \"" + Database + "\"";
+                }
+            }
+
         }
 
 

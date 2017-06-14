@@ -1,10 +1,4 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="ExtensionHostWindow.cs" company="PricewaterhouseCoopers LLP">
-//     Copyright (c) PricewaterhouseCoopers LLP.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-namespace FriendExtension
+﻿namespace FriendExtension
 {
     using System;
     using System.Runtime.InteropServices;

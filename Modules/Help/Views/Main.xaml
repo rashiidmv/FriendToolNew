@@ -9,112 +9,113 @@
     <DockPanel  LastChildFill="True">
         <FlowDocumentReader
         >
-        <!--Height="{Binding Path=MinHeight, RelativeSource={RelativeSource AncestorType={x:Type Window},Mode=FindAncestor}}"
+            <!--Height="{Binding Path=MinHeight, RelativeSource={RelativeSource AncestorType={x:Type Window},Mode=FindAncestor}}"
         Width="{Binding Path=MinWidth, RelativeSource={RelativeSource AncestorType={x:Type Window},Mode=FindAncestor}}"-->
-        <FlowDocument   
+            <FlowDocument   
             >
-            <Paragraph FontSize="18" TextAlignment="Center">
-                <Bold>
-                    <Underline>About</Underline>
-                </Bold>
-            </Paragraph>
-            <Paragraph TextAlignment="Left">1.
-                <Italic>Product Details</Italic>
-            </Paragraph>
-            <Paragraph FontSize="12" >
-                <Grid>
-                    <Grid.RowDefinitions >
-                        <RowDefinition Height="24"/>
-                        <RowDefinition  Height="24"/>
-                        <RowDefinition Height="24" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" Margin="0,0,9.6,0" FontStyle="Italic"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Version" Margin="0,0,9.6,0" FontStyle="Italic"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Licence" Margin="0,0,9.6,0" FontStyle="Italic"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Query Window" Margin="0,0,9.6,0" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="beta 1.0" Margin="0,0,9.6,0" FontWeight="Bold"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Free for Developers" Margin="0,0,9.6,0" FontWeight="Bold"/>
-                </Grid>
-                <LineBreak/>
-            </Paragraph>
+                <Paragraph FontSize="18" TextAlignment="Center">
+                    <Bold>
+                        <Underline>About</Underline>
+                    </Bold>
+                </Paragraph>
+                <Paragraph FontSize="12" xml:space="preserve">      Query Window is a developer friendly tool. This tool will help developer in querying SQL Server databases with out using SQL Server management studio. The Author like to call this as a Mini SQL Server Management studio. This tool is available as both standalone application and as an extension to visual studio 2013 and above.
+                </Paragraph>
+                <Paragraph TextAlignment="Left">1.
+                    <Italic>Product Details</Italic>
+                </Paragraph>
+                <Paragraph FontSize="12" >
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="24"/>
+                            <RowDefinition  Height="24"/>
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" Margin="0,0,9.6,0" FontStyle="Italic"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Version" Margin="0,0,9.6,0" FontStyle="Italic"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Licence" Margin="0,0,9.6,0" FontStyle="Italic"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Query Window" Margin="0,0,9.6,0" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="beta 1.0" Margin="0,0,9.6,0" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Free for Developers" Margin="0,0,9.6,0" FontWeight="Bold"/>
+                    </Grid>
+                    <LineBreak/>
+                </Paragraph>
 
-            <Paragraph TextAlignment="Left">2.
-                <Italic>Developer Details</Italic>
-            </Paragraph>
-            <Paragraph FontSize="16">
-                <Floater Width="130" HorizontalAlignment="Left" Margin="0,0,5,5" Padding="3">
-                    <BlockUIContainer>
-                        <Image  Source="../Resources/Photo.jpg" Width="126" Height="150" />
-                    </BlockUIContainer>
-                </Floater>
-                <LineBreak/>
-                <LineBreak/>
+                <Paragraph TextAlignment="Left">2.
+                    <Italic>Developer Details</Italic>
+                </Paragraph>
+                <Paragraph FontSize="16">
+                    <Floater Width="130" HorizontalAlignment="Left" Margin="0,0,5,5" Padding="3">
+                        <BlockUIContainer>
+                            <Image  Source="../Resources/Photo.jpg" Width="126" Height="150" />
+                        </BlockUIContainer>
+                    </Floater>
+                    <LineBreak/>
+                    <LineBreak/>
 
-                <LineBreak/>
-                <Bold>  Rashid MV</Bold>,
-                <LineBreak/>
-                rashiidmv@gmail.com,
-                <LineBreak/> +91 9620 370 920
-                <LineBreak/>
-                <LineBreak/>
-            </Paragraph>
-           
-            <Paragraph FontSize="18" TextAlignment="Center">
-                <Bold>
-                    <Underline>Help</Underline>
-                </Bold>
-            </Paragraph>
-            <Paragraph TextAlignment="Left">1.
-                <Italic>Config Creation Tab</Italic>
-            </Paragraph>
-            <Paragraph FontSize="12">
-                This tab will allows you can create new Report config file as well as modifying the existing Report config files.
-            </Paragraph>
+                    <LineBreak/>
+                    <Bold>Rashid MV</Bold> ,
+                    <LineBreak/>
+                    rashiidmv@gmail.com,
+                    <LineBreak/> +91 9620 370 920
+                    <LineBreak/>
+                    <LineBreak/>
+                </Paragraph>
 
-
-            <Paragraph TextAlignment="Left">2.
-                <Italic>
-                    Add Display Styles Tab</Italic>
-            </Paragraph>
-            <Paragraph FontSize="12">
-                This tab will allow you to manage
-                <Italic>DisplayStyles</Italic> , like you can add or remove display style. These diplasy styles will be available in
-                <Italic>Config Creation Tab</Italic> as soon as you add new display styles.
-            </Paragraph>
-
-            <Paragraph TextAlignment="Left">3.
-                <Italic>Help Tab</Italic>
-            </Paragraph>
-            <Paragraph FontSize="12">
-                This tab will show you developer who created this visual studio extensioin,
-                        help on how to use this extention and what are the features included in this extenstion
-                <LineBreak/>
-            </Paragraph>
+                <Paragraph FontSize="18" TextAlignment="Center">
+                    <Bold>
+                        <Underline>Help</Underline>
+                    </Bold>
+                </Paragraph>
+                <Paragraph TextAlignment="Left">1.
+                    <Italic>Connect to server</Italic>
+                </Paragraph>
+                <Paragraph FontSize="12" xml:space="preserve">       Provide your SQL server installed machine name as server name.(SQL Server authentication is not yet implemented). Click on "Connect" button or press enter to establish connection with server. Status bar will be updated with connection state as it succeeded or not.
+                </Paragraph>
 
 
-            <Paragraph FontSize="18" TextAlignment="Center">
-                <Bold>
-                    <Underline>Upcoming Features</Underline>
-                </Bold>
-            </Paragraph>
-            <Paragraph FontSize="12">
-                This is beta version of RightAngle Friend. Next version (1.0) we will will be having the following features
-            </Paragraph>
-            <Paragraph TextAlignment="Left" FontSize="14">1.
-                <Italic>Report Entity Creation</Italic>
-            </Paragraph>
-            <Paragraph TextAlignment="Left" FontSize="14">2.
-                <Italic>More field support for report config creation</Italic>
-            </Paragraph>
-            <Paragraph TextAlignment="Left" FontSize="14">2.
-                <Italic>Solution for issue reported in beta version</Italic>
-                <LineBreak/>
-            </Paragraph>
-        </FlowDocument>
-    </FlowDocumentReader>
-        </DockPanel>
+                <Paragraph TextAlignment="Left">2.
+                    <Italic>Write your queries</Italic>
+                </Paragraph>
+                <Paragraph FontSize="12" xml:space="preserve">      After connecting to server, select your desired database from the Databases dropdown and start typing your queries.
+                </Paragraph>
+
+                <Paragraph TextAlignment="Left">3.
+                    <Italic>Executing Queries</Italic>
+                </Paragraph>
+                <Paragraph FontSize="12" xml:space="preserve">      Once you completed typing your queries Press "F5" or click on "Execute" button to execute query.
+                    <LineBreak/>
+                </Paragraph>
+
+
+                <Paragraph FontSize="18" TextAlignment="Center">
+                    <Bold>
+                        <Underline>Upcoming Features</Underline>
+                    </Bold>
+                </Paragraph>
+                <Paragraph FontSize="12" xml:space="preserve">      This is beta version of Query Window. Next version (1.0) we will will be having the following features
+                </Paragraph>
+                <Paragraph TextAlignment="Left" FontSize="14">1.
+                    <Italic>Intellisense support for more database objects.</Italic>
+                </Paragraph>
+                <Paragraph TextAlignment="Left" FontSize="14">2.
+                    <Italic>Option to export query result to excel sheets.</Italic>
+                </Paragraph>
+                <Paragraph TextAlignment="Left" FontSize="14">3.
+                    <Italic>Performance improvement by implementing caching.</Italic>
+                </Paragraph>
+                <Paragraph TextAlignment="Left" FontSize="14">4.
+                    <Italic>More explanatin in help content.</Italic>
+                    <LineBreak/>
+                </Paragraph>
+                <Paragraph TextAlignment="Left" FontSize="14">5.
+                    <Italic>Solution for issue reported in beta version.</Italic>
+                    <LineBreak/>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentReader>
+    </DockPanel>
 </UserControl>
