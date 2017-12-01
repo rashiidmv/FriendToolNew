@@ -23,7 +23,5 @@ namespace Help.Views
                 DataContext = value;
             }
         }
-
-       
     }
 }

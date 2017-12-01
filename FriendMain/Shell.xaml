@@ -9,7 +9,7 @@
          MinHeight="670" MinWidth="910" Width="910" Height="670"
         mc:Ignorable="d"
         Title="Friend"  HorizontalAlignment="Center" VerticalAlignment="Center" 
-        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
         <Style  x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
             <Setter Property="Background" Value="AliceBlue" />

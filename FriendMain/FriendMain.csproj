@@ -112,6 +112,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataLists\DataLists.csproj">
+      <Project>{1fb2d29c-5be5-4c67-b1ee-36841b42d1d2}</Project>
+      <Name>DataLists</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Friend.Infra\Friend.Infra.csproj">
       <Project>{dbf30d16-4c3c-467b-9284-41911d4755c1}</Project>
       <Name>Friend.Infra</Name>

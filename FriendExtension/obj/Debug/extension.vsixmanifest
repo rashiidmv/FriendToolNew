@@ -1,0 +1,20 @@
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
+  <Metadata>
+    <Identity Id="FriendExtension.PricewaterhouseCoopers LLP.71347ead-0b2f-44f3-bd02-03222da9ca3f" Version="1.0" Language="en-US" Publisher="Rashid MV" />
+    <DisplayName>RightAngle Friend</DisplayName>
+    <Description xml:space="preserve">RightAngle Friend, this help you in creating Report config file in right angle.</Description>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.5,)" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" Version="[14.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="FriendExtension.pkgdef" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" Path="Friend.Infra.dll" AssemblyName="Friend.Infra, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" Path="QueryWindow.dll" AssemblyName="QueryWindow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" Path="DataLists.dll" AssemblyName="DataLists, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Assets>
+</PackageManifest>
